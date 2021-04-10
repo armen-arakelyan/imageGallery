@@ -1,10 +1,10 @@
 import {SUCCESS_IMAGE_GALLERY,ERROR_IMAGE_GALLERY,WAIT_IMAGE_GALLERY} from './actionTypes';
 import {getImage} from './service';
 
-export const imageRequest=(page)=>{
-    return(dispatch)=>{
+export const imageRequest=(page=1)=>{
+    return dispatch=>{
         dispatch(wait());
-        getImage(`https://picsum.photos/v2/list?page=${page}&limit=30`)
+        getImage(`https://picsum.photos/v2/list?page=${page}&limit=100`)
         .then(res=>{
             dispatch(success(res.data))
         })
