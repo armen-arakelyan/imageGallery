@@ -4,7 +4,7 @@ import {getImage} from './service';
 export const imageRequest=(page=1)=>{
     return dispatch=>{
         dispatch(wait());
-        getImage(`https://picsum.photos/v2/list?page=${page}&limit=100`)
+        getImage(`https://picsum.photos/v2/list?page=${page}&limit=20`)
         .then(res=>{
             dispatch(success(res.data))
         })

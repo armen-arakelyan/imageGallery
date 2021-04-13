@@ -1,4 +1,4 @@
-*{
+body{
     margin:0;
     padding:0;
 }
@@ -25,6 +25,7 @@
     background-color:blueviolet;
     color:white;
     border-radius: 0px 0px 20px 20px;
+    margin:0;
 }
 .gallery_content img{
     width: 400px;
@@ -38,6 +39,7 @@
     display: inline-block;
     width: 80px;
     height: 80px;
+    z-index: 9999;
   }
   .loader:after {
     content: " ";
