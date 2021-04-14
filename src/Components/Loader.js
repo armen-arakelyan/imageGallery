@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Loader=()=>{
+const Loader=(props)=>{
     return(
-        <div className="loader">
+        <div style={props.style} className="loader">
           </div>
     )
 }
