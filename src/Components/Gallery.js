@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import {imageRequest} from '../redux/imgGallery/action';
 import Cards from './Cards';
@@ -6,24 +6,26 @@ import Loader from './Loader';
 
 const Gallery=()=>{
     const img=useSelector(state=>state.img);
+    const page=useSelector(state=>state.img.page);
+    const load=useSelector(state=>state.img.loader);
     const dispatch=useDispatch();
-    const [loader,setLoader]=useState('none');
+
      useEffect(()=>{
          dispatch(imageRequest());
     },[dispatch])
-    const loadfunc=()=>{
-            if(img.loader){
-                dispatch(imageRequest())
-            }
-    }
+
     useEffect(()=>{
-        document.addEventListener('scroll',()=>{   
-            let height = Math.max( document.body.scrollHeight,null) ;  
-            if (window.scrollY+939===height) {
-                setLoader('block')
-                setTimeout(()=>{loadfunc();setLoader('none')},3000)
+       window.onscroll=()=>{   
+            let height = Math.max( document.body.scrollHeight,null); 
+            if (window.innerHeight+window.document.documentElement.scrollTop===height) {
+                    dispatch(imageRequest(page))
               }
-        })
+        }
+        if(page===6){
+            return window.onscroll=()=>{
+                return false;
+            }
+        }
     })
     return(
         <div className="photo_gallery">
@@ -34,7 +36,7 @@ const Gallery=()=>{
                       </div>           
             })
         }
-        <Loader style={{display:loader}} />
+        <Loader style={{display:load?'block':'none'}} />
         </div>
     )
 }

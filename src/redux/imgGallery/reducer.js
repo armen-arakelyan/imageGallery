@@ -1,7 +1,7 @@
 import {SUCCESS_IMAGE_GALLERY,ERROR_IMAGE_GALLERY,WAIT_IMAGE_GALLERY} from './actionTypes';
 
 const my_state={
-    loader:true,
+    loader:false,
     page:1,
     error:"",
     data:[]
