@@ -16,12 +16,12 @@ const Gallery=()=>{
 
     useEffect(()=>{
        window.onscroll=()=>{   
-            let height = Math.max( document.body.scrollHeight,null); 
-            if (window.innerHeight+window.document.documentElement.scrollTop===height) {
+        let scrollheight=Math.ceil(window.innerHeight+window.document.documentElement.scrollTop);
+            if (scrollheight===document.body.scrollHeight) {
                     dispatch(imageRequest(page))
               }
         }
-        if(page===6){
+        if(page===7){
             return window.onscroll=()=>{
                 return false;
             }
@@ -30,7 +30,7 @@ const Gallery=()=>{
     return(
         <div className="photo_gallery">
             <h1>Image Gallery</h1>
-             {img.data.length===0?<Loader />:img.data.map((v,i)=>{
+             {img.data.map((v,i)=>{
                  return <div key={i}>
                      <Cards name={v.author} img={v.download_url} />
                       </div>           
